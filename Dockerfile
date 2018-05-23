@@ -16,5 +16,5 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Install thelounge.
 ARG THELOUNGE_VERSION=3.0.0-pre.5
-RUN npm install --unsafe-perm -g thelounge@${THELOUNGE_VERSION} && \
-    npm cache clean --force
+RUN yarn global add thelounge@${THELOUNGE_VERSION} --exact && \
+    yarn cache clean
