@@ -15,6 +15,6 @@ CMD ["thelounge", "start"]
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Install thelounge.
-ARG THELOUNGE_VERSION=3.0.0-pre.5
+ARG THELOUNGE_VERSION=3.0.0-pre.6
 RUN yarn global add thelounge@${THELOUNGE_VERSION} --exact && \
     yarn cache clean
