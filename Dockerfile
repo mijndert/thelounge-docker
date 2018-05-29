@@ -5,7 +5,8 @@ ENV THELOUNGE_HOME "/var/opt/thelounge"
 ENV PORT 9000
 
 ARG THELOUNGE_VERSION=3.0.0-pre.6
-RUN yarn global add thelounge@${THELOUNGE_VERSION} --exact && \
+RUN apk add sudo \
+    yarn global add thelounge@${THELOUNGE_VERSION} --exact && \
     yarn cache clean
 
 EXPOSE ${PORT}
