@@ -10,15 +10,24 @@ EOF
     exit 1
 fi
 
-# Create user
-# Either use the LOCAL_USER_ID if passed in at runtime or fallback to 1000
-USER_ID=${LOCAL_USER_ID:-1000}
-adduser -D -H -g "" -u $USER_ID lounge
+if [ ! -z "$HOST" ]; then
+    CONF_OPT_HOST="-c host=$HOST"
+fi
+if [ ! -z "$PORT" ]; then
+    CONF_OPT_PORT="-c port=$PORT"
+fi
+if [ ! -z "$BIND" ]; then
+    CONF_OPT_BIND="-c bind=$BIND"
+fi
 
-# Make sure $DATADIR is owned by the thelounge user.
-# This effects ownership of the mounted directory on the host machine too.
-echo "Setting necessary permissions..."
-chown -R lounge:lounge "/var/opt/thelounge"
-
-echo "Starting with UID : $USER_ID"
-exec sudo -u lounge thelounge start
+if [ "$*" = "thelounge start" ]; then
+    # if the supplied command is the default (see the CMD directive in Dockerfile), append any
+    # optional flags defined via environment variables
+    exec "$@" \
+        $CONF_OPT_HOST \
+        $CONF_OPT_PORT \
+        $CONF_OPT_BIND \
+        ;
+else
+    exec "$@"
+fi
