@@ -13,12 +13,12 @@ fi
 # Create user
 # Either use the LOCAL_USER_ID if passed in at runtime or fallback to 1000
 USER_ID=${LOCAL_USER_ID:-1000}
-adduser -D -H -g "" -u $USER_ID thelounge
+adduser -D -H -g "" -u $USER_ID lounge
 
 # Make sure $DATADIR is owned by the thelounge user.
 # This effects ownership of the mounted directory on the host machine too.
 echo "Setting necessary permissions..."
-chown -R thelounge:thelounge "/var/opt/thelounge"
+chown -R lounge:lounge "/var/opt/thelounge"
 
 echo "Starting with UID : $USER_ID"
-exec sudo -u thelounge thelounge start
+exec sudo -u lounge thelounge start
