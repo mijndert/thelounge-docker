@@ -5,7 +5,7 @@ ENV NODE_ENV production
 ENV THELOUNGE_HOME "/var/opt/thelounge"
 VOLUME "${THELOUNGE_HOME}"
 
-ARG THELOUNGE_VERSION=3.0.0-rc.5
+ARG THELOUNGE_VERSION=3.0.0
 RUN yarn global add thelounge@${THELOUNGE_VERSION} --exact \
     && yarn cache clean
 
