@@ -1,5 +1,7 @@
 ## Running a container
 
+![Docker Image CI](https://github.com/mijndert/thelounge-docker/workflows/Docker%20Image%20CI/badge.svg) 
+
 Use `run-thelounge.sh` to run the container manually. No compose file is provided.
 
 Make sure to have a look at the shell script before you launch anything. Make sure your volume binding and ID's are correct.
